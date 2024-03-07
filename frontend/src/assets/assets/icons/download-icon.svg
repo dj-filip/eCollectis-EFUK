@@ -1,0 +1,7 @@
+<svg id="Component_3_1" data-name="Component 3 – 1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="Rectangle_198" data-name="Rectangle 198" fill="none" stroke="#3ad1e8" stroke-width="1" opacity="0.3">
+    <rect width="40" height="40" rx="5" stroke="none"/>
+    <rect x="0.5" y="0.5" width="39" height="39" rx="4.5" fill="none"/>
+  </g>
+  <path id="download_FILL0_wght400_GRAD0_opsz48_2_" data-name="download_FILL0_wght400_GRAD0_opsz48 (2)" d="M161.687,274A1.73,1.73,0,0,1,160,272.313v-4.022h1.688v4.022h14.625v-4.022H178v4.022A1.73,1.73,0,0,1,176.313,274ZM169,269.7l-5.428-5.428,1.209-1.209,3.375,3.375V256h1.688v10.434l3.375-3.375,1.209,1.209Z" transform="translate(-149 -245)" fill="#fff"/>
+</svg>

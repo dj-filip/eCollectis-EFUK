@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="252" height="69" viewBox="0 0 252 69">
+  <g id="Component_1_1" data-name="Component 1 – 1" transform="translate(1)">
+    <text id="ЈКП_МЕДИАНА" data-name="ЈКП МЕДИАНА" transform="translate(56 65)" fill="#3ad1e8" font-size="16" font-family="Roboto-Light, Roboto" font-weight="300"><tspan x="-55.711" y="0">ЈКП МЕДИАНА</tspan></text>
+    <g id="Group_503" data-name="Group 503" transform="translate(-937 -117)">
+      <text id="eCollectis_FUK" data-name="eCollectis FUK" transform="translate(1053 155)" fill="#fff" font-size="36" font-family="Roboto-Regular, Roboto"><tspan x="-116.104" y="0">eCollectis FUK</tspan></text>
+      <g id="Group_502" data-name="Group 502" transform="translate(-7 -2)">
+        <text id="BS" transform="translate(1187 137)" fill="#fff" font-size="8" font-family="Roboto-Regular, Roboto"><tspan x="-4.863" y="0">BS</tspan></text>
+        <g id="Ellipse_71" data-name="Ellipse 71" transform="translate(1179 126)" fill="none" stroke="#fff" stroke-width="1">
+          <circle cx="8" cy="8" r="8" stroke="none"/>
+          <circle cx="8" cy="8" r="7.5" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+    nginx: 
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        ports:
+            - 80:80
+        volumes:
+            - static_volume:/app/backend/base/django_static
+            - ./docker/nginx/development:/etc/nginx/conf.d
+        depends_on: 
+            - backend
+    eprint:
+        build:
+            context: .
+            dockerfile: docker/eprint/Dockerfile
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        command: 'php -S 0.0.0.0:8001 -d public/index.php -t public'
+        ports:
+            - '8001:8001'
+        depends_on:
+            - database
+    backend:
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: ./docker/backend/Dockerfile           
+        entrypoint: /app/docker/backend/wsgi-entrypoint.sh
+        volumes:
+            - static_volume:/app/backend/base/django_static
+        expose:
+            - 8000        
+        environment:
+            - MYSQL_USER=electus
+            - MYSQL_PASSWORD=electus123
+            - MYSQL_ROOT_USER=root
+            - MYSQL_ROOT_PASSWORD=toor
+            # - MYSQL_DATABASE_HOST=127.0.0.1
+            - MYSQL_DATABASE_PORT=3306
+        depends_on: 
+            - database
+    database:
+        build:
+            context: .
+            dockerfile: ./docker/mariadb/Dockerfile
+        volumes:
+            - ./data.db:/var/lib/mysql/data
+        restart: unless-stopped
+        env_file: ./docker/mariadb/.env
+        ports:
+            - "3306:3306"
+volumes:
+    static_volume: {}
