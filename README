@@ -22,11 +22,13 @@
 7) Migrate data to "medijana" database with "python manage.py migrate --database=fuk_db"
 8) Run "py manage.py runserver" every time you want to run development version of Django
 
+
 ## Frontend
 1) Open new command line
 2) From repo folder go to "frontend" folder
 3) Run "npm install" for the first time
 4) Run "npm start" every time you want to start development version of Reactjs
+
 
 ## RUNNING APPLICATION ON DEFAULT PORT
 1) Repeat steps 1-7 from Backend section
@@ -58,3 +60,16 @@ Build and run docker containers:
 ```docker-compose up --build```
 Stop running docker containers:
 ```docker-compose down```
+
+
+# HOW TO START APPLICATION
+
+## database start
+1) mysql.server start
+
+## backend start
+1) Type in "venv/Scripts/activate" to activate virtualenv (on Windows); or "source venv/bin/activate" (on Linux)
+2) Run "py manage.py runserver" or "python3 manage.py runserver" every time you want to run development version of Django
+
+## frontend start
+1) Run "npm start" every time you want to start development version of Reactjs
