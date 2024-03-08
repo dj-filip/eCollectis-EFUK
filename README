@@ -33,7 +33,7 @@
 ## RUNNING APPLICATION ON DEFAULT PORT
 1) Repeat steps 1-7 from Backend section
 2) In step 8 in Backend section run instead "py manage.py runserver:port", where `port` is your default port number
-3) Before running step 4) from frontend, navigate to `frontend/package.json` and assign value of port to `proxy` field that matches `port` from previous step
+3) Before running step 4 from frontend, navigate to `frontend/package.json` and assign value of port to `proxy` field that matches `port` from previous step
 4) Now you can run frontend as described in Frontend section
 
 
