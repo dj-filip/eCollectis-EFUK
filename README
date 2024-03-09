@@ -64,12 +64,12 @@ Stop running docker containers:
 
 # HOW TO START APPLICATION
 
-## database start
+## Database start
 1) mysql.server start
 
-## backend start
+## Backend start
 1) Type in "venv/Scripts/activate" to activate virtualenv (on Windows); or "source venv/bin/activate" (on Linux)
 2) Run "py manage.py runserver" or "python3 manage.py runserver" every time you want to run development version of Django
 
-## frontend start
+## Frontend start
 1) Run "npm start" every time you want to start development version of Reactjs
