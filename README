@@ -15,7 +15,7 @@
 ## Backend
 1) Go to "backend" folder and run "python -m venv venv"
 2) Type in "venv/Scripts/activate" to activate virtualenv (on Windows); or "source venv/bin/activate" (on Linux)
-3) Install the requirements with "pip install -r requirements.txt"
+3) Install the requirements with "pip install -r requirements.txt" or "pip3 install -r requirements.txt"
 4) Prepare migrations with "python manage.py makemigrations"
 5) Configure "electus.cnf" and "fuk.cnf" files to target your database
 6) Migrate data to "electususers" database with "python manage.py migrate --database=default" 
