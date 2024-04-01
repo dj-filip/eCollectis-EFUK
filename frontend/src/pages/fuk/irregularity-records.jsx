@@ -24,10 +24,10 @@ import { makeStyles } from "@material-ui/core/styles";
   
 
 // assets
-import AddIconSrc from 'assets/assets/icons/add-icon.svg';
-import EditIcon from 'assets/assets/icons/edit-icon.svg';
-import TrashIcon from 'assets/assets/icons/trash-icon.svg';
-import PrintIcon from 'assets/assets/icons/print-icon.svg';
+import AddIconSrc from 'assets/icons/add-icon.svg';
+import EditIcon from 'assets/icons/edit-icon.svg';
+import TrashIcon from 'assets/icons/trash-icon.svg';
+import PrintIcon from 'assets/icons/print-icon.svg';
 
 const AddIcon = (
   <Icon>

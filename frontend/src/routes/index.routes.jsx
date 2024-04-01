@@ -17,7 +17,6 @@ import PrivateRoutes from "routes/private.routes";
 import { useSelector, useDispatch } from "react-redux";
 import { getIsAuth } from "redux/slices/auth/auth.thunk";
 import AddProcess from "pages/fuk/add-process.pages";
-import ViewRemovedProcesses from "pages/fuk/view-removed-processes.pages";
 import RemoveProcess from "pages/fuk/remove-process.pages";
 
 
@@ -73,7 +72,6 @@ const AppRoutes = () => {
             <Route path="fuk" element={<Outlet />}>
               <Route path="glavna" element={<FukMain />} />
               <Route path="dodavanje-procesa" element={<AddProcess />} />
-              <Route path="pregled-uklonjenih-procesa" element={<ViewRemovedProcesses />} />
               <Route path="pregled-procesa" element={<ViewProcess />} />
               <Route path="brisanje-procesa" element={<RemoveProcess />} />
               <Route path="obrada-procesa/:id" element={<UpdateProcess />} />

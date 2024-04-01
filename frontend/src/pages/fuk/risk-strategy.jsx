@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Image from 'mui-image';
 
 // assets
-import DownloadIcon from 'assets/assets/icons/download-icon.svg';
+import DownloadIcon from 'assets/icons/download-icon.svg';
 
 
 const RiskStrategy = (props) => {

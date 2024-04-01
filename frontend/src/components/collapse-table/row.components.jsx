@@ -14,10 +14,10 @@ import { useState, Fragment } from 'react';
 import Image from 'mui-image';
 
 // assets
-import DropDownIcon from 'assets/assets/icons/dropdown-arrow.svg';
-import DropUpIcon from 'assets/assets/icons/dropup-arrow.svg';
-import EditIcon from 'assets/assets/icons/edit-icon.svg';
-import TrashIcon from 'assets/assets/icons/trash-icon.svg';
+import DropDownIcon from 'assets/icons/dropdown-arrow.svg';
+import DropUpIcon from 'assets/icons/dropup-arrow.svg';
+import EditIcon from 'assets/icons/edit-icon.svg';
+import TrashIcon from 'assets/icons/trash-icon.svg';
 
 
 const Row = (props) => {

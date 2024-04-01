@@ -7,7 +7,7 @@ import Image from 'mui-image';
 
 
 // assets
-import DropDownIcon from 'assets/assets/icons/dropdown-arrow.svg';
+import DropDownIcon from 'assets/icons/dropdown-arrow.svg';
 
 const AllPages = (props) => {
   const [numPages, setNumPages] = useState(null);

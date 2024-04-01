@@ -22,8 +22,13 @@ import ViewActivity from './view-activity.pages';
 
 
 // assets
-import PrintIcon from 'assets/assets/icons/print-icon.svg';
-import EditIcon from 'assets/assets/icons/edit-icon-2.svg';
+import PrintIcon from 'assets/icons/print-icon.svg';
+import EditIcon from 'assets/icons/edit-icon-2.svg';
+import { StyledContainer } from 'components/styled/StyledContainer';
+import ProcHeader from 'components/process-procedure/proc-header/proc-header.components';
+import { StyledPaper } from 'components/styled/StyledPaper';
+import ProcGrid from 'components/process-procedure/proc-grid/proc-grid.components';
+import ProcBox from 'components/process-procedure/proc-box/proc-box.components';
 
 
 const printLink = process.env.REACT_APP_PRINT_LINK;
@@ -40,14 +45,12 @@ const ViewProcedure = () => {
   const proceduraId = location.state.proceduraId;
 
 
-  // page 1
+  // title
   const [procedura, setProcedura] = useState("");
   const [organizacionaJedinica, setOrganizacionaJedinica] = useState("");
-  const [sifraProcesa, setSifraProcesa] = useState("");
-  const [rukovodilac, setRukovodilac] = useState("");
-  const [nazivProcedure, setNazivProcedure] = useState("");
-  const [nosilac, setNosilac] = useState("");
-  const [verzija, setVerzija] = useState("");
+
+
+  const [topTableData, setTopTableData] = useState({});
 
   // page 2
   const [ciljProcedure, setCiljProcedure] = useState("");
@@ -72,6 +75,8 @@ const ViewProcedure = () => {
   const [kontrolisao, setKontrolisao] = useState(null);
   const [odobrio, setOdobrio] = useState(null);
 
+  const [bottomTableData, setBottomTableData] = useState({});
+
   // get all data
   useEffect(() => {
     (async () => {
@@ -82,11 +87,14 @@ const ViewProcedure = () => {
         // page 1
         setOrganizacionaJedinica(proceduraData.orgj_naziv);
         setProcedura(proceduraData.proc_naziv);
-        setSifraProcesa(proceduraData.proc_sifra);
-        setRukovodilac(proceduraData.proc_rukoj);
-        setVerzija(proceduraData.proc_verzija);
-        setNazivProcedure(proceduraData.proc_nazivprcs);
-        setNosilac(proceduraData.proc_nosilac);
+
+
+        setTopTableData({
+          sifra: proceduraData.proc_sifra,
+          rukovodilac: proceduraData.proc_rukoj,
+          verzija: proceduraData.proc_verzija,
+          nosilac: proceduraData.proc_nosilac
+        });
         // page 2
         setCiljProcedure(proceduraData.orgj_naziv);
         // page 3
@@ -119,6 +127,11 @@ const ViewProcedure = () => {
           setIzradio(tempIzradio);
           setKontrolisao(tempKontrolisao);
           setOdobrio(tempOdobrio);
+          setBottomTableData({
+            izradio: tempIzradio,
+            kontrolisao: tempKontrolisao,
+            odobrio: tempOdobrio
+          })
         }
       } catch (error) {
         alert(error)
@@ -143,112 +156,97 @@ const ViewProcedure = () => {
   const municipality = "ЈКП Медиана"
 
   return (
-    <Grid container sx={{
-      width: "100%",      
-      maxWidth: "1760px",
-      marginRight: "200px",
-      paddingTop: "50px",
-      '@media (max-width: 1920px)': {
-        maxWidth: "1400px",
-      }
-    }}>
-      <Box className="pregled-procedure" sx={{ 
-        ...formContainer, 
-        flexGrow: 1,
-        gap: "20px 0",
-        "& h4": {
-          color: "#3AD1E8",
-        }
-        }}>
-        <Box sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingBottom: "30px",
-        }}>
-          <Typography variant='h2' className='txt-blue'>
-          Преглед процедуре
-          </Typography>
-          <Stack direction="row" sx={{
-            gap: "10px",
+    <StyledContainer disableGutters>
+      <Grid container direction="column" rowSpacing={4}>
+        {/* Header */}
+        <Grid item>
+          <ProcHeader
+            type="procedure"
+            heading="Преглед процедуре"
+            procesId={procesId}
+            oblastId={oblastId}
+            imeOblasti={imeOblasti}
+            imeProces={imeProcesa}
+            proceduraId={proceduraId}
+            btns={["edit", "print"]}
+          />
+        </Grid>
+        {/* Title */}
+        <Grid item>
+          <StyledPaper sx={{
+            padding: "20px 0",
+            textAlign: "center",
           }}>
-            <Button onClick={(e) => {
-              e.stopPropagation();
-              navigate(`/fuk/obrada-procedure/${proceduraId}`, { state : { oblastId, imeOblasti, procesId, imeProcesa, proceduraId }});
-            }} 
-            sx={{
-              justifyContent: "flex-end",
-              padding: "0",
-            }}>
-              <Image src={EditIcon} width={40} height={40}></Image>
-            </Button>
-            <Button href={`http://${printLink}/print/procedure/${proceduraId}`} target="_blank" sx={{
-              justifyContent: "flex-end",
-              padding: "0",
-            }}>
-              <Image src={PrintIcon} width={40} height={40}></Image>
-            </Button>
-          </Stack>
-        </Box>
-        <Typography sx={{ 
-          padding: "20px 0",
-          fontSize: "18px", 
-          fontWeight: "500",
-          color: "#3AD1E8",
-          textTransform: "uppercase",
-          textAlign: "center", 
-          backgroundColor: "#000A194D",
-          '@media (max-width: 1920px)': {
-            fontSize: "16px", 
-          }
-          }}>документација о систему - процедуре</Typography>
-        <Box sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: "15px",
-          padding: "30px 0",
-          backgroundColor: "#000A194D",
-        }}>
-          <Typography variant="h3">Корисник јавних средстава: {organizacionaJedinica}</Typography>
-          <Typography variant="h3" sx={{
-            fontWeight: "500 !important",
-            textTransform: "uppercase",
-          }}>{procedura}</Typography>
-        </Box>
-        <ViewProcedure1
-          procedura={procedura}
-          organizacionaJedinica={organizacionaJedinica}
-          sifraProcesa={sifraProcesa}
-          rukovodilac={rukovodilac}
-          nosilac={nosilac}
-          verzija={verzija}
-        />
-        <ViewProcedure2
-          ciljProcedure={ciljProcedure}
-        />
-        <ViewProcedure3
-          podrucjePrimene={podrucjePrimene}
-        />
-        <ViewProcedure4
-          drugaDokumentacija={drugaDokumentacija}
-        />
-        <ViewProcedure5
-          odgovornost={odgovornost}
-        />
-        <ViewProcedure6
-          zakonskiOkvir={zakonskiOkvir}
-        />
-        <ViewProcedure7
-          pojmovi={pojmovi}
-        />
-        <ViewProcedure8
-          izradio={izradio}
-          kontrolisao={kontrolisao}
-          odobrio={odobrio}
-        />
+            <Typography variant="h3" >Документација о систему - процедуре</Typography>
+          </StyledPaper>
+        </Grid>
+        <Grid item>
+          <StyledPaper>
+            <Stack 
+              alignItems="center" 
+              py="30px" 
+              spacing={2} 
+            >
+              <Typography variant="h4">Корисник јавних средстава: {organizacionaJedinica}</Typography>
+              <Typography variant="h4" sx={{
+                fontWeight: "500",
+                textTransform: "uppercase",
+              }}>{procedura}</Typography>
+            </Stack>
+          </StyledPaper>
+        </Grid>
+        {/* Top Table */}
+        <Grid item>
+          <ProcGrid
+            table="top"
+            organizacija={organizacionaJedinica}
+            tableData={topTableData}
+          />
+        </Grid>
+        {/* Boxes */}
+        <Grid item>
+          <ProcBox
+            title={"Сврха и циљ процедуре"}
+            content={ciljProcedure}
+          />
+        </Grid>
+        <Grid item>
+          <ProcBox
+            title={"Подручје примене"}
+            content={podrucjePrimene}
+          />
+        </Grid>
+        <Grid item>
+          <ProcBox
+            title={"Друга документација"}
+            content={drugaDokumentacija}
+          />
+        </Grid>
+        <Grid item>
+          <ProcBox
+            title={"Одговорност и овлашћења"}
+            content={odgovornost}
+          />
+        </Grid>
+        <Grid item>
+          <ProcBox
+            title={"Законски и подзаконски оквир"}
+            content={zakonskiOkvir}
+          />
+        </Grid>
+        <Grid item>
+          <ProcBox
+            title={"Појмови и скраћенице које се користе у дијаграму тока"}
+            content={pojmovi}
+          />
+        </Grid>
+        {/* Bottom Table */}
+        <Grid item>
+          <ProcGrid
+            table="bottom"
+            tableData={bottomTableData}
+          />
+        </Grid>
         <ViewActivity
           oblastId={oblastId}
           imeOblasti={imeOblasti}
@@ -257,23 +255,13 @@ const ViewProcedure = () => {
           proceduraId={proceduraId}
           imeProcedure={procedura}
         />
-        <Button sx={{
-          alignSelf: "center",
-          marginTop: "35px",
-          padding: "10px 45px",
-          backgroundColor: "#3AD1E8",
-          borderRadius: "5px",
-          color: "#0A1423",
-          '@media (max-width: 1920px)': {
-            fontSize: "14px", 
-            padding: "8px 35px",
-          }
-        }}
-          href={`http://${printLink}/print/procedure/${proceduraId}`}
-          target="_blank"
-        >Штампа процедуре и дијаграма тока</Button>
-      </Box>
-    </Grid>
+        <Grid item textAlign="center">
+          <Button variant="btn" href={`http://${printLink}/print/procedure/${proceduraId}`}
+            >Штампа процедуре и дијаграма тока
+          </Button>
+        </Grid>
+      </Grid>
+    </StyledContainer>
   )
 }
 

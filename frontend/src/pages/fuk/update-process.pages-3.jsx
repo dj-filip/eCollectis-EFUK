@@ -28,8 +28,8 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, L
 
 
 // assets
-import EditIcon from 'assets/assets/icons/edit-icon-2.svg';
-import AddIcon from 'assets/assets/icons/add-icon.svg';
+import EditIcon from 'assets/icons/edit-icon-2.svg';
+import AddIcon from 'assets/icons/add-icon.svg';
 
 const AddProcess3 = (props) => {
   const {

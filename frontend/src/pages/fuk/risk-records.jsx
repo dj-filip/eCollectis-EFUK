@@ -15,8 +15,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { getRizik, patchRizik } from "services/fuk-rizik.services";
 
 // assets
-import EditIconSrc from 'assets/assets/icons/edit-icon.svg';
-import PrintIcon from 'assets/assets/icons/print-icon.svg';
+import EditIconSrc from 'assets/icons/edit-icon.svg';
+import PrintIcon from 'assets/icons/print-icon.svg';
 
 
 const riskRecordsSchema = parseInt(process.env.REACT_APP_RISK_RECORDS_SCHEMA);

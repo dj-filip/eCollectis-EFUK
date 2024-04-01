@@ -23,7 +23,7 @@ import Image from 'mui-image';
 import { getAktivnosti } from 'services/fuk-aktivnost.services';
 
 // assets
-import AddIconSrc from 'assets/assets/icons/add-icon.svg';
+import AddIconSrc from 'assets/icons/add-icon.svg';
 
 const UpdateActivity = (props) => {
   const {

@@ -4,13 +4,13 @@ import {useNavigate } from 'react-router-dom';
 
 
 // assets
-import CategorySearchIcon from 'assets/assets/icons/category-search.svg';
-import RiskRecordsIcon from 'assets/assets/icons/risk-records.svg';
-import IrregularityRecordsIcon from 'assets/assets/icons/irregularity-records.svg';
-import GfukIcon from 'assets/assets/icons/gfuk.svg';
-import HarmonizationIcon from 'assets/assets/icons/harmonization.svg';
-import IndexOfProcessesIcon from 'assets/assets/icons/index-of-processes.svg';
-import RiskStrategyIcon from 'assets/assets/icons/risk-strategy.svg';
+import CategorySearchIcon from 'assets/icons/category-search.svg';
+import RiskRecordsIcon from 'assets/icons/risk-records.svg';
+import IrregularityRecordsIcon from 'assets/icons/irregularity-records.svg';
+import GfukIcon from 'assets/icons/gfuk.svg';
+import HarmonizationIcon from 'assets/icons/harmonization.svg';
+import IndexOfProcessesIcon from 'assets/icons/index-of-processes.svg';
+import RiskStrategyIcon from 'assets/icons/risk-strategy.svg';
 
 
 

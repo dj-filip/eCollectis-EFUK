@@ -22,7 +22,7 @@ import Image from 'mui-image';
 import { useState } from 'react';
 
 // assets
-import AddIconSrc from 'assets/assets/icons/add-icon.svg';
+import AddIconSrc from 'assets/icons/add-icon.svg';
 
 const AddActivity = (props) => {
   const {

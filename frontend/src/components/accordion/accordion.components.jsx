@@ -20,11 +20,11 @@ import {
 } from '@mui/material';
 
 // assets
-import AddIcon from 'assets/assets/icons/add-icon.svg';
-import ViewIcon from 'assets/assets/icons/view-icon.svg';
-import EditIcon from 'assets/assets/icons/edit-icon.svg';
-import TrashIcon from 'assets/assets/icons/trash-icon.svg';
-import CloseIcon from 'assets/assets/icons/close-icon.svg';
+import AddIcon from 'assets/icons/add-icon.svg';
+import ViewIcon from 'assets/icons/view-icon.svg';
+import EditIcon from 'assets/icons/edit-icon.svg';
+import TrashIcon from 'assets/icons/trash-icon.svg';
+import CloseIcon from 'assets/icons/close-icon.svg';
 import { useNavigate } from "react-router-dom";
 
 const Accordion = () => {

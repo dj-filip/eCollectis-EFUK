@@ -9,9 +9,9 @@ import { useSelector, useDispatch } from "react-redux";
 import AppRoutes from "routes/index.routes";
 // styles
 import { lightTheme, darkTheme } from "styles/theme.styles";
-import 'assets/assets/css/style.css';
+import 'assets/css/style.css';
 // mui
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material";
 import { CssBaseline } from "@mui/material";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -21,7 +21,8 @@ import { getIsAuth } from "redux/slices/auth/auth.thunk";
 
 
 const App = () => {
-  const darkMode = useSelector((state) => state.theme.darkMode);
+  // const darkMode = useSelector((state) => state.theme.darkMode);
+  const darkMode = true;
   const location = useLocation();
   const dispatch = useDispatch();
 

@@ -47,13 +47,14 @@ h2, h2.MuiTypography-h2, h2.MuiDialogTitle-root {
 }
 
 
-h3, h3.MuiTypography-h3, input, .td-2 {
+
+input, .td-2 {
     font-size: 24px;
     font-weight: 300;
     line-height: 32px;
 }
 
-h4, h4.MuiTypography-h4, .opacity-box table th, .opacity-box table tr td:first-child, label, .acc-table th {
+.opacity-box table th, .opacity-box table tr td:first-child, label, .acc-table th {
     font-size: 18px;
     font-weight: 500;
     text-transform: uppercase;
@@ -460,7 +461,7 @@ button {
     align-items: center;
     background: none;
     border: none;
-    border-radius: 5px !important;
+    /* border-radius: 5px !important; */
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -1227,9 +1228,9 @@ span.red-cell {
 
 
 /* PREGLED PROCESA / DODAVANJE PROCESA / OBRADA PROCESA - PREGLED PROCEDURE */
-.pregled-procesa > *:not(div:first-child, a:last-child), .dodavanje-procesa > *:not(div:first-child, a:last-child), .obrada-procesa > *:not(div:first-child, a:last-child), .dodavanje-procesa > *:not(div:first-child, a:last-child), .pregled-procedure > *:not(div:first-child, a:last-child), .dodavanje-procedura > *:not(div:first-child, a:last-child), .obrada-procedure > *:not(div:first-child, a:last-child) {
+/* .pregled-procesa > *:not(div:first-child, a:last-child), .dodavanje-procesa > *:not(div:first-child, a:last-child), .obrada-procesa > *:not(div:first-child, a:last-child), .dodavanje-procesa > *:not(div:first-child, a:last-child), .pregled-procedure > *:not(div:first-child, a:last-child), .dodavanje-procedura > *:not(div:first-child, a:last-child), .obrada-procedure > *:not(div:first-child, a:last-child) {
     background-color: #000A194D;
-}
+} */
 
 .pregled-procesa .MuiPaper-root, .dodavanje-procesa .MuiPaper-root, .obrada-procesa .MuiPaper-root, .pregled-procedure .MuiPaper-root, .dodavanje-procedura .MuiPaper-root, .obrada-procedure .MuiPaper-root {
     padding: 0;
@@ -1517,13 +1518,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 
     
-    h3, h3.MuiTypography-h3, input, textarea, .td-2, table.collaps-table > tbody td, table.collaps-table > tbody th {
+    input, textarea, .td-2, table.collaps-table > tbody td, table.collaps-table > tbody th {
         font-size: 18px !important;
         line-height: 26px;
     }
 
 
-    h4, h4.MuiTypography-h4, .opacity-box table th, .opacity-box table tr td:first-child, label, .acc-table th, table.collaps-table thead th {
+    .opacity-box table th, .opacity-box table tr td:first-child, label, .acc-table th, table.collaps-table thead th {
         font-size: 16px !important;
     }
 

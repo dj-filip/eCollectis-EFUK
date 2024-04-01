@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // assets
-import Grb from 'assets/assets/icons/logo.png';
+import Grb from 'assets/icons/logo.png';
 // components
 import HeaderMenu from "components/header/header-menu.components";
 import Drawer from "components/header/drawer.components";
@@ -120,16 +120,9 @@ const Header = ({ props }) => {
                     flexDirection: "column",
                     justifyContent: "center",
                   }}>
-                    <Typography variant="h2" sx={{
-                      fontSize: "36px !important",
+                    <Typography variant="h1" sx={{
                     }}>eCollectis FUK</Typography>
-                    <Typography sx={{
-                      fontSize: "16px",
-                      fontWeight: "300",
-                      color: "#3AD1E8",
-                      
-                      textTransform: "uppercase"
-                    }}>
+                    <Typography variant="subtitle1">
                       {opstina}</Typography>
                   </Stack>
                 </Box>

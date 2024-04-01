@@ -1,17 +1,13 @@
 import { createTheme } from "@mui/material";
 
 const primaryPalette = {
-  main: "#6495ED",
-  light: "rgb(131, 170, 240)",
-  dark: "rgb(70, 104, 165)",
-  contrastText: "rgba(0, 0, 0, 0.87)",
+  main: "#3AD1E8",
+  light: "#3AD1E84D"
 };
 
 const secondaryPalette = {
-  main: "#edbd64",
-  light: "rgb(240, 202, 131)",
-  dark: "rgb(165, 132, 70)",
-  contrastText: "rgba(0, 0, 0, 0.87)",
+  main: "#FFFFFF",
+  dark: "#0A1423"
 };
 
 const errorPalette = {
@@ -42,9 +38,9 @@ const successPalette = {
   contrastText: "rgba(0, 0, 0, 0.87)",
 };
 
-const spacing = [0, 4, 8, 16, 32, 64, 128];
+const spacing = [0, 4, 8, 16, 32, 64, 128, 1];
 
-const borderRadius = 4;
+const borderRadius = 5;
 
 const breakpoints = {
   xs: 0,
@@ -64,18 +60,13 @@ export const lightTheme = createTheme({
       default: "#fafafa",
       paper: "#fff",
     },
-    text: {
-      primary: "rgba(0, 0, 0, 0.87)",
-      secondary: "rgba(0, 0, 0, 0.54)",
-      disabled: "rgba(0, 0, 0, 0.38)",
-    },
     primary: primaryPalette,
     secondary: secondaryPalette,
     error: errorPalette,
     warning: warningPalette,
     info: infoPalette,
     success: successPalette,
-    divider: "rgba(0, 0, 0, 0.12)",
+    divider: "red",
   },
   spacing: spacing,
   shape: {
@@ -121,18 +112,10 @@ export const lightTheme = createTheme({
 });
 
 export const darkTheme = createTheme({
-  typography: {
-    fontFamily: 'Roboto, sans-serif',
-  },
   palette: {
     background: {
-      default: "#303030",
-      paper: "#424242",
-    },
-    text: {
-      primary: "#FFFFFF",
-      secondary: "rgba(255, 255, 255, 0.7)",
-      disabled: "rgba(255, 255, 255, 0.5)",
+      paper: "transparent",
+      button: "red"
     },
     primary: primaryPalette,
     secondary: secondaryPalette,
@@ -140,7 +123,50 @@ export const darkTheme = createTheme({
     warning: warningPalette,
     info: infoPalette,
     success: successPalette,
-    divider: "rgba(255, 255, 255, 0.12)",
+    divider: secondaryPalette.dark,
+  },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+    h1: {
+      color: secondaryPalette.main,
+      fontSize: "36px",
+    },
+    subtitle1: {
+      color: primaryPalette.main,
+      fontSize: "16px",
+      fontWeight: "300",
+      textTransform: "uppercase",
+    },
+    h2: {
+      color: primaryPalette.main,
+    },
+    h3: {
+      fontSize: "18px",
+      fontWeight: "500",
+      lineHeight: "24px",
+      textTransform: "uppercase",
+      color: primaryPalette.main,
+      '@media (max-width: 1920px)': {
+        fontSize: "16px",
+        lineHeight: "22px"
+      },
+    },
+    h4: {
+      fontSize: "24px",
+      fontWeight: "300",
+      lineHeight: "32px",
+      color: secondaryPalette.main,
+      '@media (max-width: 1920px)': {
+        fontSize: "20px",
+        lineHeight: "26px"
+      },
+    },
+    body: {
+      fontSize: "18px",
+      fontWeight: "300",
+      lineHeight: "32px",
+      color: secondaryPalette.main,
+    }
   },
   spacing: spacing,
   shape: {
@@ -150,9 +176,43 @@ export const darkTheme = createTheme({
     values: breakpoints,
   },
   components: {
-    MuiButtonBase: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: "btn" },
+          style: {
+            alignSelf: "center",
+            padding: "10px 45px",
+            color: secondaryPalette.dark,
+            backgroundColor: primaryPalette.main,
+            '@media (max-width: 1920px)': {
+              fontSize: "14px", 
+              padding: "8px 35px",
+            }
+          }
+        }
+      ],
       defaultProps: {
         disableRipple: disableRipple,
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          padding: "12px",
+          border: "1px solid #3AD1E84D",
+          borderRadius: "5px",
+          '@media (max-width: 1920px)': {
+            padding: "8px",
+          },
+        }
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          fontSize: "18px",
+        }
       },
     },
     MuiTooltip: {
@@ -160,5 +220,12 @@ export const darkTheme = createTheme({
         arrow: arrow,
       },
     },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          color: "red",
+        }
+      }
+    }
   },
 });
