@@ -557,7 +557,7 @@ thead th, tbody td {
     font-weight: 300;
 }
 
-tbody td::before {
+/* tbody td::before {
     top: 50%;
     transform: translateY(-50%);
     left: 0;
@@ -567,7 +567,7 @@ tbody td::before {
     width: 1px;
     height: 70px;
     background-color: #0A1423;
-}
+} */
 
 tbody tr td:first-child::before {
     display: none;
@@ -1276,13 +1276,13 @@ table.collaps-table > thead th:first-child {
 }
 
 table.collaps-table td, table.collaps-table th {
-    border-bottom: 1px solid #182835;
+    /* border-bottom: 1px solid #182835; */
     background-color: #000A194D;
     text-align: center;
 }
 
 table.collaps-table td:not(:last-child) , table.collaps-table th:not(:last-child) {
-    border-right: 1px solid #182835;
+    /* border-right: 1px solid #182835; */
 }
 
 table.collaps-table > tbody td, table.collaps-table > tbody th {

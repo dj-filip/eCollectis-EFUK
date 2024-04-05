@@ -31,6 +31,8 @@ const ViewProcess = () => {
   const oblastId = location.state.oblastId;
   const imeOblasti = location.state.imeOblasti;
   const procesId = location.state.procesId;
+
+
  
   // title
   const [organizacija, setOrganizacija] = useState(" ");

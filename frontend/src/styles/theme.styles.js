@@ -202,6 +202,9 @@ export const darkTheme = createTheme({
           padding: "12px",
           border: "1px solid #3AD1E84D",
           borderRadius: "5px",
+          '&:hover .MuiSvgIcon-root': {
+            fill: secondaryPalette.main
+          },
           '@media (max-width: 1920px)': {
             padding: "8px",
           },
@@ -224,6 +227,15 @@ export const darkTheme = createTheme({
       styleOverrides: {
         root: {
           color: "red",
+        }
+      }
+    },
+    // Table 
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderRight: "1px solid transparent",
+          borderBottom: "1px solid transparent"
         }
       }
     }

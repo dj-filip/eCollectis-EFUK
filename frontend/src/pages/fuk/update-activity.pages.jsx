@@ -27,12 +27,8 @@ import AddIconSrc from 'assets/icons/add-icon.svg';
 
 const UpdateActivity = (props) => {
   const {
-    oblastId,
-    imeOblasti,
     procesId,
-    imeProcesa,
     proceduraId,
-    imeProcedure,
     aktivnosti,
     setAktivnosti,
     isAktivnostiDestroyed,
@@ -40,9 +36,6 @@ const UpdateActivity = (props) => {
   } = props;
 
   const [firstLoad, setFirstLoad] = useState(true)
-  const [enableAdd, setEnableAdd] = useState(false)
-  const [enableUpdate, setEnableUpdate] = useState(false)
-  const [enableRemove, setEnableRemove] = useState(false)
 
   const [akt_naziv, setAktNaziv] = useState(null)
   const [akt_opis, setAktOpis] = useState(null)

@@ -474,10 +474,13 @@ const Accordion = () => {
                         <button onClick={(e) => {
                           e.stopPropagation();
                           handleOpenObradaOblasti(item.name);
-                        }}><img src={EditIcon} alt="edit-icon" /></button><button onClick={(e) => {
+                        }}><img src={EditIcon} alt="edit-icon" />
+                        </button>
+                        <button onClick={(e) => {
                           e.stopPropagation();
                           handleOpenBrisanjeOblasti(item.id);
-                        }}><img src={TrashIcon} alt="trash-icon" /></button>
+                        }}><img src={TrashIcon} alt="trash-icon" />
+                        </button>
                       </div>
                     </div>
                   )
@@ -518,7 +521,9 @@ const Accordion = () => {
                           } else {
                             setOpenErrorDialog(true)
                           }
-                        }}><img src={ViewIcon} alt="view-icon" /></button>
+                        }}>
+                          <img src={ViewIcon} alt="view-icon" />
+                        </button>
                         <button onClick={(e) => {
                           e.stopPropagation();
                           if (isOblastSelected) {
@@ -568,11 +573,13 @@ const Accordion = () => {
                           if (isOblastSelected && isProcesSelected) {
                             const proceduraId = item.id;
                             navigation("/fuk/pregled-procedure/",
-                              { state: { selectedOblastId, selectedOblastName, selectedProcesId, imeProcesa, proceduraId } })
+                              { state: { oblasiId: selectedOblastId, imeOblasti: selectedOblastName, procesId: selectedProcesId, imeProcesa, proceduraId } })
                           } else {
                             setOpenErrorDialog(true)
                           }
-                        }}><img src={ViewIcon} alt="view-icon" /></button>
+                        }}>
+                          <img src={ViewIcon} alt="view-icon" />
+                        </button>
                         <button onClick={(e) => {
                           e.stopPropagation();
                           if (isProceduraSelected) {

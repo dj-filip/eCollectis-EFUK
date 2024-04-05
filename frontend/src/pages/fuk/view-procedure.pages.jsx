@@ -45,6 +45,7 @@ const ViewProcedure = () => {
   const proceduraId = location.state.proceduraId;
 
 
+
   // title
   const [procedura, setProcedura] = useState("");
   const [organizacionaJedinica, setOrganizacionaJedinica] = useState("");
@@ -247,14 +248,21 @@ const ViewProcedure = () => {
             tableData={bottomTableData}
           />
         </Grid>
-        <ViewActivity
-          oblastId={oblastId}
-          imeOblasti={imeOblasti}
-          procesId={procesId}
-          imeProcesa={imeProcesa}
-          proceduraId={proceduraId}
-          imeProcedure={procedura}
-        />
+        {/* Activity Header */}
+        <Grid item>
+          <StyledPaper sx={{
+            padding: "50px 40px",
+          }}>
+            <Typography variant="h3" >Активности</Typography>
+          </StyledPaper>
+        </Grid>
+        {/* Activity Table */}
+        <Grid item>
+          <ViewActivity
+            procesId={procesId}
+            proceduraId={proceduraId}
+          />
+        </Grid>
         <Grid item textAlign="center">
           <Button variant="btn" href={`http://${printLink}/print/procedure/${proceduraId}`}
             >Штампа процедуре и дијаграма тока
