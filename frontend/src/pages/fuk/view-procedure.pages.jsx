@@ -1,42 +1,33 @@
 import { useEffect, useState } from 'react'
+
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import { getProcedura } from 'services/fuk-procedura.services';
+import { getPotpisiByDocumentIdAndType } from 'services/fuk-potpis.services';
+import { getAktivnosti } from 'services/fuk-aktivnost.services';
+
+// mui components
 import { 
-  Box,
   Grid,
   Button,
   Stack,
-  Typography,
+  Typography
 } from '@mui/material';
-import Image from 'mui-image';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { getProcedura } from 'services/fuk-procedura.services';
-import { getPotpisiByDocumentIdAndType } from 'services/fuk-potpis.services'
-import ViewProcedure1 from './view-procedure.pages-1';
-import ViewProcedure2 from './view-procedure.pages-2';
-import ViewProcedure3 from './view-procedure.pages-3';
-import ViewProcedure4 from './view-procedure.pages-4';
-import ViewProcedure5 from './view-procedure.pages-5';
-import ViewProcedure6 from './view-procedure.pages-6';
-import ViewProcedure7 from './view-procedure.pages-7';
-import ViewProcedure8 from './view-procedure.pages-8';
-import ViewActivity from './view-activity.pages';
 
-
-// assets
-import PrintIcon from 'assets/icons/print-icon.svg';
-import EditIcon from 'assets/icons/edit-icon-2.svg';
+// custom components
 import { StyledContainer } from 'components/styled/StyledContainer';
-import ProcHeader from 'components/process-procedure/proc-header/proc-header.components';
 import { StyledPaper } from 'components/styled/StyledPaper';
 import ProcGrid from 'components/process-procedure/proc-grid/proc-grid.components';
 import ProcBox from 'components/process-procedure/proc-box/proc-box.components';
+import ProcHeader from 'components/process-procedure/proc-header/proc-header.components';
+import CollapseTable from 'components/process-procedure/collapse-table/collapse-table.components';
+
 
 
 const printLink = process.env.REACT_APP_PRINT_LINK;
 
 
-
 const ViewProcedure = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const oblastId = location.state.oblastId;
   const imeOblasti = location.state.imeOblasti;
@@ -50,33 +41,32 @@ const ViewProcedure = () => {
   const [procedura, setProcedura] = useState("");
   const [organizacionaJedinica, setOrganizacionaJedinica] = useState("");
 
-
+  // top table
   const [topTableData, setTopTableData] = useState({});
 
-  // page 2
+  // cilj
   const [ciljProcedure, setCiljProcedure] = useState("");
 
-  // page 3
+  // podrucje
   const [podrucjePrimene, setPodrucjePrimene] = useState("");
 
-  // page 4
+  // druga dokumentacija
   const [drugaDokumentacija, setDrugaDokumentacija] = useState("");
 
-  // page 5
+  // odgovornost
   const [odgovornost, setOdgovornost] = useState("");
 
-  // page 6
+  // zakonski okvir
   const [zakonskiOkvir, setZakonskiOkvir] = useState("");
 
-  // page 7 
+  // pojmovi
   const [pojmovi, setPojmovi] = useState("");
 
-  // page 8
-  const [izradio, setIzradio] = useState(null);
-  const [kontrolisao, setKontrolisao] = useState(null);
-  const [odobrio, setOdobrio] = useState(null);
-
+  // bottom table
   const [bottomTableData, setBottomTableData] = useState({});
+
+  // aktivnosti
+  const [aktivnosti, setAktivnosti] = useState([])
 
   // get all data
   useEffect(() => {
@@ -85,30 +75,37 @@ const ViewProcedure = () => {
         const res = await getProcedura(proceduraId);
         const proceduraData = res.data.fuk_procedura
   
-        // page 1
+        // title
         setOrganizacionaJedinica(proceduraData.orgj_naziv);
         setProcedura(proceduraData.proc_naziv);
 
-
+        // top table
         setTopTableData({
           sifra: proceduraData.proc_sifra,
           rukovodilac: proceduraData.proc_rukoj,
           verzija: proceduraData.proc_verzija,
           nosilac: proceduraData.proc_nosilac
         });
-        // page 2
+
+        // cilj
         setCiljProcedure(proceduraData.orgj_naziv);
-        // page 3
+
+        // podrucje
         setPodrucjePrimene(proceduraData.proc_podrucjep);
-        // page 4
+
+        // druga dokumentacija
         setDrugaDokumentacija(proceduraData.proc_odok)
-        // page 5
+
+        // odgovornost
         setOdgovornost(proceduraData.proc_odgv);
-        // page 6
+
+        // zakonski okvir
         setZakonskiOkvir(proceduraData.proc_zakon);
-        //page 7
+
+        // pojmovi
         setPojmovi(proceduraData.proc_termin);
-        // page 8
+
+        // bottom table
         {    
           const resPotpisi = await getPotpisiByDocumentIdAndType(proceduraId, 2)
           const potpisiData = resPotpisi.data.fuk_potpisi
@@ -125,14 +122,26 @@ const ViewProcedure = () => {
               tempOdobrio = potpisiData[i];
             }
           }
-          setIzradio(tempIzradio);
-          setKontrolisao(tempKontrolisao);
-          setOdobrio(tempOdobrio);
           setBottomTableData({
             izradio: tempIzradio,
             kontrolisao: tempKontrolisao,
             odobrio: tempOdobrio
           })
+        }
+
+        // aktivnosti
+        {
+          const res = await getAktivnosti(procesId, proceduraId);
+          const aktivnostiData = res.data.fuk_aktivnosti
+          var tempAktivnosti = []
+          var tempRedosled = []
+          for (var i = 0; i < aktivnostiData.length; i++) {
+            if (!tempRedosled.includes(aktivnostiData[i].akt_redosled)) {
+              tempRedosled.push(aktivnostiData[i].akt_redosled)
+              tempAktivnosti.push(aktivnostiData[i])
+            }
+          }
+          setAktivnosti(tempAktivnosti);
         }
       } catch (error) {
         alert(error)
@@ -140,25 +149,10 @@ const ViewProcedure = () => {
     })();
   }, []);
 
-  const headline = {
-    fontWeight: 'bold', 
-    fontSize: 'h6.fontSize', 
-    textAlign: 'center'
-  };
-
-  const formContainer = {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "left",
-    alignItems: "left",
-  };
-
-  const municipality = "ЈКП Медиана"
 
   return (
     <StyledContainer disableGutters>
-      <Grid container direction="column" rowSpacing={4}>
+      <Grid container direction="column" rowSpacing={3}>
         {/* Header */}
         <Grid item>
           <ProcHeader
@@ -258,10 +252,7 @@ const ViewProcedure = () => {
         </Grid>
         {/* Activity Table */}
         <Grid item>
-          <ViewActivity
-            procesId={procesId}
-            proceduraId={proceduraId}
-          />
+          <CollapseTable data={aktivnosti} />
         </Grid>
         <Grid item textAlign="center">
           <Button variant="btn" href={`http://${printLink}/print/procedure/${proceduraId}`}

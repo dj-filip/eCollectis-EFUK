@@ -23,7 +23,6 @@ import RemoveProcess from "pages/fuk/remove-process.pages";
 import UpdateProcess from "pages/fuk/update-process.pages";
 import AddProcedure from "pages/fuk/add-procedure.pages";
 import UpdateProcedure from "pages/fuk/update-procedure.pages";
-import ViewActivity from "pages/fuk/view-activity.pages";
 import CheckList from "pages/fuk/check-list.pages";
 import RiskRecords from "pages/fuk/risk-records";
 import IrregularityRecords from "pages/fuk/irregularity-records";
@@ -78,7 +77,6 @@ const AppRoutes = () => {
               <Route path="dodavanje-procedure" element={<AddProcedure />} />
               <Route path="obrada-procedure/:id" element={<UpdateProcedure />} />
               <Route path="pregled-procedure" element={<ViewProcedure />} />
-              <Route path="pregled-aktivnosti" element={<ViewActivity />} />
               
               <Route path="cek-lista" element={<CheckList />} />
               <Route path="registar-rizika" element={<RiskRecords />} />

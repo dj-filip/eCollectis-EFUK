@@ -51,7 +51,6 @@ const AddProcess8 = (props) => {
           fullWidth 
           id="izradio-ime-prezime" 
           label="Контролише" 
-          variant="outlined"
           onChange={(e) => {
             let input = e.target.value
             let array = input.split(',')

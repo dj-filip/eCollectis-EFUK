@@ -40,7 +40,7 @@ const AddProcess2 = (props) => {
           multiline  
           id="ciljPoslovnogProcesa" 
           label="Циљ пословног процеса" 
-          variant="outlined" 
+          placeholder="Upisite ovde..."
           onChange={(e) => {
             setCiljPoslovnogProcesa(e.target.value)
           }}

@@ -1524,9 +1524,9 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
 
-    .opacity-box table th, .opacity-box table tr td:first-child, label, .acc-table th, table.collaps-table thead th {
+    /* .opacity-box table th, .opacity-box table tr td:first-child, label, .acc-table th, table.collaps-table thead th {
         font-size: 16px !important;
-    }
+    } */
 
     .obrada-procesa .MuiSelect-select, .obrada-procedure .MuiSelect-select {
         font-size: 18px !important;

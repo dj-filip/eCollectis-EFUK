@@ -238,6 +238,105 @@ export const darkTheme = createTheme({
           borderBottom: "1px solid transparent"
         }
       }
+    },
+    MuiTextField: {
+      defaultProps: {
+        InputLabelProps: { 
+          shrink: true,
+          sx: {
+            transform: "none",
+            fontSize: "18px",
+            fontWeight: "500",
+            lineHeight: "24px",
+            textTransform: "uppercase",
+            color: primaryPalette.main,
+            '@media (max-width: 1920px)': {
+              fontSize: "16px",
+              lineHeight: "22px"
+            },
+          },
+        },
+        variant: "standard",
+        placeholder: "Upisite ovde..."
+      },
+      styleOverrides: {
+        root: {
+          '.MuiInput-root': {
+            marginTop: "40px",
+          },
+          '&:hover .MuiInput-underline::before': {
+            borderBottom: "1px solid #3AD1E8 !important",
+          },
+          '& label': {
+            transform: "none",
+          },
+          '& textarea': {
+            color: "#FFF",
+          },
+          // '& textarea::placeholder': {
+          //   opacity: "1 !important",
+          // },
+          '& .MuiInput-underline::before': {
+            borderBottom: "none",
+          },
+          '& .MuiInput-underline::after': {
+            borderBottomColor: '#3AD1E8',
+          },
+          '& label': {
+            color: "#3AD1E8 !important",
+          },
+        }
+      }
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          '.MuiInput-root': {
+            marginTop: "35px",
+            borderBottom: "1px solid #3AD1E8",
+          },
+          '& label': {
+            color: "#3AD1E8 !important",
+            transform: "none",
+            fontSize: "18px",
+            fontWeight: "500",
+            lineHeight: "24px",
+            textTransform: "uppercase",
+            color: primaryPalette.main,
+            '@media (max-width: 1920px)': {
+              fontSize: "16px",
+              lineHeight: "22px"
+            },
+          },
+          '&:hover .MuiInput-underline::before': {
+            borderBottom: "1px solid #3AD1E8 !important",
+          },
+        }
+      }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          color: secondaryPalette.main
+        }
+      }
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: secondaryPalette.dark + "!important"
+        }
+      }
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          color: secondaryPalette.main,
+          '&:hover': {
+            color: primaryPalette.main
+          },
+        }
+      }
     }
   },
 });

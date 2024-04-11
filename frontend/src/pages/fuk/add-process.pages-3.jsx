@@ -46,7 +46,6 @@ const AddProcess3 = (props) => {
         <TextField  
           id="rizik" 
           label="Ризик" 
-          variant="outlined" 
           onChange={(e) => {
             setRizik(e.target.value)
           }}

@@ -16,7 +16,7 @@ import {
   Box, 
   Stack 
 } from '@mui/material';
-import CollapseTable from 'components/collapse-table/collapse-table.components';
+import CollapseTable from 'components/process-procedure/collapse-table/collapse-table.components';
 import Item from 'components/grid/item/item.components';
 import Image from 'mui-image';
 import { useState } from 'react';

@@ -8,10 +8,13 @@ import { getRiziciByProcessId } from 'services/fuk-rizik.services'
 import { getPotpisiByDocumentIdAndType } from 'services/fuk-potpis.services'
 
 // mui components
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import {
+  Grid,
+  Button,
+  Stack,
+  Typography
+} from '@mui/material';
+
 
 // custom components
 import { StyledPaper } from 'components/styled/StyledPaper';
@@ -162,7 +165,7 @@ const ViewProcess = () => {
 
   return (
     <StyledContainer disableGutters>
-      <Grid container direction="column" rowSpacing={4}>
+      <Grid container direction="column" rowSpacing={3}>
         {/* Header */}
         <Grid item>
           <ProcHeader

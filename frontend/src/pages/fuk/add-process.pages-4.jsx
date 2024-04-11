@@ -84,7 +84,6 @@ const AddProcess4 = (props) => {
       multiline  
       id="kratakOpisUlaza" 
       label="Кратак опис пословног процеса" 
-      variant="outlined" 
       onChange={(e) => {
         setKratakOpisUlaza(e.target.value)
       }}

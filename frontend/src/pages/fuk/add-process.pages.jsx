@@ -1,27 +1,14 @@
-import { useEffect, useState } from 'react'
-import Box from '@mui/material/Box';
+import { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Pagination from '@mui/material/Pagination';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import Divider from '@mui/material/Divider';
-import Item from 'components/grid/item/item.components'
-import Checkbox from '@mui/material/Checkbox';
-import Autocomplete from '@mui/material/Autocomplete';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import FormControl from "@mui/material/FormControl";
-import DatePicker from "@mui/lab/DatePicker";
+
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import LocalizedDatePicker from 'components/localization/localized-date-picker.components';
 
 
-import { getProcesi, postProces } from 'services/fuk-proces.services'
-import { postProcesVeza, postProcesVeze } from 'services/fuk-proces-veza.services'
+import { postProces } from 'services/fuk-proces.services'
 import { postPotpisi } from 'services/fuk-potpis.services'
 import { postRizik } from 'services/fuk-rizik.services'
 
@@ -34,6 +21,15 @@ import AddProcess6 from './add-process.pages-6';
 import AddProcess7 from './add-process.pages-7';
 import AddProcess8 from './add-process.pages-8';
 import AddPotpis from './add-potpis';
+import { StyledContainer } from 'components/styled/StyledContainer';
+import ProcHeader from 'components/process-procedure/proc-header/proc-header.components';
+import { StyledPaper } from 'components/styled/StyledPaper';
+import ProcInputBox from 'components/process-procedure/proc-input-box/ProcInputBox.components';
+import ProcInputGrid from 'components/process-procedure/proc-input-grid/ProcInputGrid.components';
+
+
+const opstina = process.env.REACT_APP_OPSTINA;
+
 
 const AddProcess = () => {  
   const navigate = useNavigate();
@@ -188,98 +184,44 @@ const AddProcess = () => {
     }
   }
 
-  const formContainer = {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "left",
-    alignItems: "left",
-  };
   
   const inputSpacing = { marginBottom: 3 };
 
-  const opstina = "ЈКП Медиана"
 
 
   return (
-    <Grid sx={{
-      width: "100%",      
-      maxWidth: "1760px",
-      marginRight: "200px",
-      paddingTop: "50px",
-      '@media (max-width: 1920px)': {
-        maxWidth: "1400px",
-      }
-    }}>
-      <Box className="dodavanje-procesa" sx={{ 
-        ...formContainer, 
-        flexGrow: 1, 
-        gap: "20px 0",
-        "& h4": {
-          color: "#3AD1E8",
-        },
-        "& fieldset, textarea": {
-          border: "none",
-          borderBottom: "1px solid",
-          borderRadius: "0",
-          borderColor: "#3AD1E8 !important",
-          outline: "none",
-          backgroundColor: "transparent",
-          resize: "none",
-        },
-        "& label": {
-          position: "relative",
-          transform: "none",
-          marginBottom: "30px",
-          color: "#3AD1E8 !important",
-          fontSize: "18px",
-          fontWeight: "500",
-          textTransform: "uppercase",
-        },
-        "& input, textarea": {
-          padding: "10px 0 10px 0",
-          fontSize: "24px",
-          fontWeight: "300",
-          color: "#FFF",
-        },
-        "& .MuiOutlinedInput-root": {
-          padding: "0",
-        }
-        }}>
-        <Box sx={{
-          paddingBottom: "50px",
-        }}>
-          <Typography variant='h2' className='txt-blue'>
-          Додавање мапе пословних процеса
-          </Typography>
-        </Box>
-        <Typography sx={{ 
-          padding: "20px 0",
-          fontSize: "18px", 
-          fontWeight: "500",
-          color: "#3AD1E8",
-          textTransform: "uppercase",
-          textAlign: "center", 
-          backgroundColor: "#000A194D",
-          '@media (max-width: 1920px)': {
-            fontSize: "16px", 
-          }
-          }}>Мапа пословних процеса</Typography>
-        <Box sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: "15px",
-          padding: "30px 0",
-          backgroundColor: "#000A194D",
-        }}>
-          <Typography variant="h3">Корисник јавних средстава: {opstina}</Typography>
-          <Typography variant="h3" sx={{
-            fontWeight: "500 !important",
-            textTransform: "uppercase",
-          }}>Мапа пословних процеса</Typography>
-        </Box>
+    <StyledContainer disableGutters>
+      <Grid container direction="column" rowSpacing={3}>
+        {/* Header */}
+        <Grid item>
+          <ProcHeader
+            heading="Додавање мапе пословних процеса"
+          />
+        </Grid>
+        {/* Title */}
+        <Grid item>
+          <StyledPaper sx={{
+            padding: "20px 0",
+            textAlign: "center",
+          }}>
+            <Typography variant="h3" >Мапа пословних процеса</Typography>
+          </StyledPaper>
+        </Grid>
+        <Grid item>
+          <StyledPaper>
+            <Stack 
+              alignItems="center" 
+              py="30px" 
+              spacing={2} 
+            >
+              <Typography variant="h4">Корисник јавних средстава: {opstina}</Typography>
+              <Typography variant="h4" sx={{
+                fontWeight: "500",
+                textTransform: "uppercase",
+              }}>Мапа пословних процеса</Typography>
+            </Stack>
+          </StyledPaper>
+        </Grid>
         <AddProcess1
           opstina={opstina}
           imeOblasti={location.state.imeOblasti}
@@ -294,24 +236,55 @@ const AddProcess = () => {
           setRukovodilacOrganizacioneJedinice={setRukovodilacOrganizacioneJedinice}
           setNosilacPoslovnogProcesa={setNosilacPoslovnogProcesa}
         />
-        <AddProcess2
-          setCiljPoslovnogProcesa={setCiljPoslovnogProcesa}
-        />
+        {/* Top Grid */}
+        <Grid item>
+          <ProcInputGrid 
+            opstina={opstina}
+            imeOblasti={location.state.imeOblasti}
+            setOrganizacijaId={setOrganizacijaId}
+            organizacionaJedinicaName={organizacionaJedinicaName}
+            setOrganizacionaJedinicaName={setOrganizacionaJedinicaName}
+            setOblastId={setOblastId}
+            setOrganizacionaJedinicaId={setOrganizacionaJedinicaId}
+            setSifraProcesa={setSifraProcesa}
+            setNazivProcesa={setNazivProcesa}
+            setVerzijaProcesa={setVerzijaProcesa}
+            setRukovodilacOrganizacioneJedinice={setRukovodilacOrganizacioneJedinice}
+            setNosilacPoslovnogProcesa={setNosilacPoslovnogProcesa}
+          />
+        </Grid>
+        <Grid item>
+          <ProcInputBox 
+            id="ciljPoslovnogProcesa"
+            label="Циљ пословног процеса"
+            toSet={setCiljPoslovnogProcesa}
+          />
+        </Grid>
         <AddProcess3
           glavniRizici={glavniRizici}
           setGlavniRizici={setGlavniRizici}
         />
-        <AddProcess4
-          setKratakOpisUlaza={setKratakOpisUlaza}
-          setKratakOpisAktivnosti={setKratakOpisAktivnosti}
-          setKratakOpisRezultata={setKratakOpisRezultata}
-        />
-        <AddProcess5
-          setVezaSaDrugimProcesima={setVezaSaDrugimProcesima}
-        />
-        <AddProcess6
-          setResursiZaOstvarivanjePoslovnogProcesa={setResursiZaOstvarivanjePoslovnogProcesa}
-        />
+        <Grid item>
+          <ProcInputBox 
+            id="kratakOpisUlaza"
+            label="Кратак опис пословног процеса"
+            toSet={setKratakOpisUlaza}
+          />
+        </Grid>
+        <Grid item>
+          <ProcInputBox 
+            id="vezaSaDrugimProcesima"
+            label="Везе са другим процесима"
+            toSet={setVezaSaDrugimProcesima}
+          />
+        </Grid>
+        <Grid item>
+          <ProcInputBox 
+            id="resursiZaOstvarivanjePoslovnogProcesa"
+            label="Ресурси за остваривање пословног процеса"
+            toSet={setResursiZaOstvarivanjePoslovnogProcesa}
+          />
+        </Grid>
         <AddProcess7 />
         <AddPotpis
             ptpsDatumIzradio={ptpsDatumIzradio}
@@ -372,8 +345,8 @@ const AddProcess = () => {
             }
           }}>Потврди</Button>
         </Stack>
-      </Box>
-    </Grid>
+      </Grid>
+    </StyledContainer>
   )
 }
 
