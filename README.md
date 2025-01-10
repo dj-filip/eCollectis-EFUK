@@ -1,3 +1,6 @@
+# eCollectis FUK
+![efuk](https://github.com/user-attachments/assets/b40e1a41-31d3-4cfc-8b37-4ce7a2babf92)
+
 # HOW TO RUN INSTALLATION
 
 ## Development version
