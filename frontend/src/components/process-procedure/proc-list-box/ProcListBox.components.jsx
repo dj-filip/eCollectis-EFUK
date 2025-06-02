@@ -4,7 +4,7 @@ import { StyledPaper } from "components/styled/StyledPaper";
 import { useNavigate } from "react-router-dom";
 
 
-const ProcListBox = ({ proceduresListData }) => {
+const ProcListBox = ({ title, proceduresListData }) => {
   const navigate = useNavigate();
  
   const oblastId = proceduresListData.oblastId;
@@ -17,7 +17,7 @@ const ProcListBox = ({ proceduresListData }) => {
   return (
     <StyledPaper>
       <StyledBox>
-        <Typography variant="h4" marginBottom="15px">Циљ пословног процеса</Typography>
+        <Typography variant="h3" marginBottom="15px">{title}</Typography>
         <Divider />
         <Stack
           alignItems="flex-start"

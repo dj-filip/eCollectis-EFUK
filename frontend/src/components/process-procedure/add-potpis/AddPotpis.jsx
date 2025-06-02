@@ -1,29 +1,11 @@
-import { useEffect, useState } from 'react'
-import Box from '@mui/material/Box';
+import React from 'react'
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import Pagination from '@mui/material/Pagination';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import Divider from '@mui/material/Divider';
-import Item from 'components/grid/item/item.components'
-import Checkbox from '@mui/material/Checkbox';
-import Autocomplete from '@mui/material/Autocomplete';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import FormControl from "@mui/material/FormControl";
 import DatePicker from "@mui/lab/DatePicker";
 
-import { useNavigate, useLocation } from 'react-router-dom';
-import LocalizedDatePicker from 'components/localization/localized-date-picker.components';
-
-
-import { postProces } from 'services/fuk-proces.services'
-import { postPotpis } from 'services/fuk-potpis.services'
-
-const AddProcess8 = (props) => {
+const AddPotpis = (props) => {
+  
   const {
     ptpsDatumIzradio,
     setPtpsDatumIzradio,
@@ -36,21 +18,18 @@ const AddProcess8 = (props) => {
     setOdobrioImePrezime
   } = props
 
-  useEffect(() => {
-    
-    }, []
-  )
 
   const inputSpacing = { marginBottom: 3 };
-
+  
   return (
-    <Grid container className="input-box">
+<Grid container className="input-box">
       {/* prvi red */}
       <Grid container className="half-wdth">  
         <TextField 
           fullWidth 
           id="izradio-ime-prezime" 
           label="Контролише" 
+          variant="outlined"
           onChange={(e) => {
             let input = e.target.value
             let array = input.split(',')
@@ -66,7 +45,18 @@ const AddProcess8 = (props) => {
           // error={Boolean(userProfileError.name)}
           fullWidth
           variant="filled"
-          sx={{ ...inputSpacing }}
+          sx={{ 
+            ...inputSpacing, 
+          '& > div > div': {
+            backgroundColor: "transparent !important",
+          },
+          '& > div > div::before': {
+            borderBottomColor: "#3AD1E8 !important",
+          },
+          '& > div > div::after': {
+            borderBottomColor: "#3AD1E8 !important",
+          }
+          }}
         >
           <DatePicker
             label="Датум"
@@ -102,7 +92,18 @@ const AddProcess8 = (props) => {
           // error={Boolean(userProfileError.name)}
           fullWidth
           variant="filled"
-          sx={{ ...inputSpacing }}
+          sx={{ 
+            ...inputSpacing, 
+          '& > div > div': {
+            backgroundColor: "transparent !important",
+          },
+          '& > div > div::before': {
+            borderBottomColor: "#3AD1E8 !important",
+          },
+          '& > div > div::after': {
+            borderBottomColor: "#3AD1E8 !important",
+          }
+          }}    
         >
         <DatePicker
           label="Датум"
@@ -138,9 +139,21 @@ const AddProcess8 = (props) => {
           // error={Boolean(userProfileError.name)}
           fullWidth
           variant="filled"
-          sx={{ ...inputSpacing }}
+          sx={{ 
+            ...inputSpacing, 
+          '& > div > div': {
+            backgroundColor: "transparent !important",
+          },
+          '& > div > div::before': {
+            borderBottomColor: "#3AD1E8 !important",
+          },
+          '& > div > div::after': {
+            borderBottomColor: "#3AD1E8 !important",
+          }
+          }}  
         >
         <DatePicker
+          
           label="Датум"
           inputFormat="dd/MM/yyyy"
           autoComplete="off"
@@ -156,4 +169,4 @@ const AddProcess8 = (props) => {
   )
 }
 
-export default AddProcess8
+export default AddPotpis

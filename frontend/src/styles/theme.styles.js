@@ -190,6 +190,19 @@ export const darkTheme = createTheme({
               padding: "8px 35px",
             }
           }
+        },
+        {
+          props: { variant: "outline-btn" },
+          style: {
+            alignSelf: "center",
+            padding: "10px 45px",
+            color: secondaryPalette.main,
+            border: "1px solid " + primaryPalette.main,
+            '@media (max-width: 1920px)': {
+              fontSize: "14px", 
+              padding: "8px 35px",
+            }
+          }
         }
       ],
       defaultProps: {
@@ -257,7 +270,7 @@ export const darkTheme = createTheme({
           },
         },
         variant: "standard",
-        placeholder: "Upisite ovde..."
+        placeholder: "Упишите овде...",
       },
       styleOverrides: {
         root: {

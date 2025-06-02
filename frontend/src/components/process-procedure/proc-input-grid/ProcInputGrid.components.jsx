@@ -1,11 +1,11 @@
 import {
-    Grid, 
-    TextField,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem
-  } from '@mui/material';
+  Grid,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
+} from '@mui/material';
 import { StyledBox } from 'components/styled/StyledBox';
 import { StyledPaper } from 'components/styled/StyledPaper';
 import { useState, useEffect } from 'react';
@@ -14,16 +14,17 @@ import { getOrganizacioneJedinice } from 'services/fuk-organizaciona-jedinica.se
 
 
 const ProcInputGrid = (props) => {
-  
-  const { 
+
+  const {
+    procedura,
     organizacionaJedinicaName,
     setOrganizacionaJedinicaName,
     setOrganizacionaJedinicaId,
-    setSifraProcesa, 
-    setNazivProcesa, 
-    setVerzijaProcesa, 
-    setRukovodilacOrganizacioneJedinice, 
-    setNosilacPoslovnogProcesa  
+    setSifraProc,
+    setNazivProc,
+    setVerzijaProc,
+    setRukovodilacOrganizacioneJedinice,
+    setNosilacPoslovnogProcesa
   } = props
 
   const [listOptionsIdAndName, setListOptionsIdAndName] = useState([]);
@@ -31,7 +32,7 @@ const ProcInputGrid = (props) => {
   useEffect(() => {
     (async () => {
       const res = await getOrganizacioneJedinice();
-      
+
       let list = []
       for (let i = 0; i < res.data.data.length; i++) {
         list.push({ key: res.data.data[i].orgj_id, name: res.data.data[i].orgj_naziv })
@@ -46,28 +47,28 @@ const ProcInputGrid = (props) => {
       <StyledBox paddingTop="30px !important">
         <Grid container spacing={4}>
           <Grid item xs={6} alignSelf="flex-end">
-            <FormControl 
+            <FormControl
               fullWidth
               variant="standard"
               size="medium">
-                <InputLabel id="dropdown-select-medium" shrink>Организациона јединица</InputLabel>
-                <Select
-                  labelId="dropdown-select-medium"
-                  id="dropdown-select"
-                  value={organizacionaJedinicaName}
-                  label="Организациона јединица"
-                  onChange={(event) => {      
-                    const name = event.target.value;
-                    const element = listOptionsIdAndName.find((item) => {
-                      return item.name === name
-                    });
-                    const key = element.key
-                    if (key > 0) {
-                      setOrganizacionaJedinicaId(key)
-                      setOrganizacionaJedinicaName(name)
-                    }
-                  }}
-                >
+              <InputLabel id="dropdown-select-medium" shrink>Организациона јединица</InputLabel>
+              <Select
+                labelId="dropdown-select-medium"
+                id="dropdown-select"
+                value={organizacionaJedinicaName}
+                label="Организациона јединица"
+                onChange={(event) => {
+                  const name = event.target.value;
+                  const element = listOptionsIdAndName.find((item) => {
+                    return item.name === name
+                  });
+                  const key = element.key
+                  if (key > 0) {
+                    setOrganizacionaJedinicaId(key)
+                    setOrganizacionaJedinicaName(name)
+                  }
+                }}
+              >
                 <MenuItem key="0" value="Одаберите">
                   <em>Одаберите</em>
                 </MenuItem>
@@ -80,24 +81,34 @@ const ProcInputGrid = (props) => {
             </FormControl>
           </Grid>
           <Grid item xs={6}>
-            <TextField
-              fullWidth
-              multiline  
-              id="sifraProcesa"
-              label="Шифра процеса" 
-              placeholder="Upisite ovde..."
-              onChange={(e) => {
-                setSifraProcesa(e.target.value)
-              }}
-            />
+            {procedura ? (
+              <TextField
+                fullWidth
+                multiline
+                id={"sifraProcedure"}
+                label="Шифра процедуре"
+                onChange={(e) => {
+                  setSifraProc(e.target.value)
+                }}
+              />
+            ) : (
+              <TextField
+                fullWidth
+                multiline
+                id="sifraProcesa"
+                label="Шифра процеса"
+                onChange={(e) => {
+                  setSifraProc(e.target.value)
+                }}
+              />
+            )}
           </Grid>
           <Grid item xs={6}>
             <TextField
               fullWidth
-              multiline  
+              multiline
               id="rukovodilacOrganizacioneJedinice"
-              label="Руководилац организационе јединице" 
-              placeholder="Upisite ovde..."
+              label="Руководилац организационе јединице"
               onChange={(e) => {
                 setRukovodilacOrganizacioneJedinice(e.target.value)
               }}
@@ -106,34 +117,31 @@ const ProcInputGrid = (props) => {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              multiline  
-              id="verzijaProcesa"
-              label="Верзија" 
-              placeholder="Upisite ovde..."
+              multiline
+              id={procedura? "verzijaProcedure" : "verzijaProcesa"}
+              label="Верзија"
               onChange={(e) => {
-                setVerzijaProcesa(e.target.value)
+                setVerzijaProc(e.target.value)
               }}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              multiline  
-              id="nazivProcesa"
-              label="Назив пословног процеса" 
-              placeholder="Upisite ovde..."
+              multiline
+              id={procedura? "nazivProcedure" : "nazivProcesa"}
+              label={procedura? "Назив процедуре" : "Назив пословног процеса"}
               onChange={(e) => {
-                setNazivProcesa(e.target.value)
+                setNazivProc(e.target.value)
               }}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              multiline  
+              multiline
               id="nosilacPoslovnogProcesa"
-              label="Носилац пословног процеса (одговорно лице)" 
-              placeholder="Upisite ovde..."
+              label="Носилац пословног процеса (одговорно лице)"
               onChange={(e) => {
                 setNosilacPoslovnogProcesa(e.target.value)
               }}
@@ -141,7 +149,7 @@ const ProcInputGrid = (props) => {
           </Grid>
         </Grid>
       </StyledBox>
-  </StyledPaper>
+    </StyledPaper>
   )
 }
 

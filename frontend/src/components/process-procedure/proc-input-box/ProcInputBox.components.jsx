@@ -1,5 +1,6 @@
-import { StyledPaper } from "components/styled/StyledPaper";
 import TextField from '@mui/material/TextField';
+
+import { StyledPaper } from "components/styled/StyledPaper";
 import { StyledBox } from "components/styled/StyledBox";
 
 
@@ -15,11 +16,10 @@ const ProcInputBox = ({ toSet, inputBoxId, label }) => {
           multiline  
           id={inputBoxId}
           label={label} 
-          placeholder="Upisite ovde..."
           onChange={(e) => {
             toSet(e.target.value)
           }}
-        /> 
+        />
       </StyledBox>
     </StyledPaper>
   )

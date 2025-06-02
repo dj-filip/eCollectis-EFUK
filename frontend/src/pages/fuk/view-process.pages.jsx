@@ -248,7 +248,14 @@ const ViewProcess = () => {
         </Grid>
         <Grid item>
           <ProcListBox
+          title={"Шифре и називи процедура"}
             proceduresListData={proceduresListData}
+          />
+        </Grid>
+        <Grid item>
+          <ProcBox
+            title={"Ресурси потребни за реализацију процеса"}
+            content={resursiZaOstvarivanjePoslovnogProcesa}
           />
         </Grid>
         {/* Bottom Table */}

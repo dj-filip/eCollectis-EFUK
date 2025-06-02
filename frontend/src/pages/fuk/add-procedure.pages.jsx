@@ -11,19 +11,23 @@ import Divider from '@mui/material/Divider';
 import Item from 'components/grid/item/item.components'
 import { useNavigate, useLocation } from 'react-router-dom';
 import LocalizedDatePicker from 'components/localization/localized-date-picker.components';
-import AddProcedure1 from './add-procedure.pages-1';
-import AddProcedure2 from './add-procedure.pages-2';
-import AddProcedure3 from './add-procedure.pages-3';
-import AddProcedure4 from './add-procedure.pages-4';
-import AddProcedure5 from './add-procedure.pages-5';
-import AddProcedure6 from './add-procedure.pages-6';
-import AddProcedure7 from './add-procedure.pages-7';
-import AddProcedure8 from './add-procedure.pages-8';
+
 import { postProcedura } from 'services/fuk-procedura.services';
 import { postPotpisi } from 'services/fuk-potpis.services';
 import { postAktivnosti } from 'services/fuk-aktivnost.services';
 import AddActivity from './add-activity';
-import AddPotpis from './add-potpis';
+import { StyledContainer } from 'components/styled/StyledContainer';
+import ProcHeader from 'components/process-procedure/proc-header/proc-header.components';
+import { StyledPaper } from 'components/styled/StyledPaper';
+import ProcInputGrid from 'components/process-procedure/proc-input-grid/ProcInputGrid.components';
+import ProcInputBox from 'components/process-procedure/proc-input-box/ProcInputBox.components';
+import AddPotpis from 'components/process-procedure/add-potpis/AddPotpis';
+
+
+
+const opstina = process.env.REACT_APP_OPSTINA;
+
+
 
 const AddProcedure = () => {
   const navigate = useNavigate();
@@ -97,14 +101,13 @@ const AddProcedure = () => {
       izradioImePrezime.length > 0 &&
       kontrolisaoImePrezime.length > 0 &&
       odobrioImePrezime.length > 0
-    )
-    {
+    ) {
       return true;
     }
     return false;
   }
 
-  const handleSubmit = async() =>  {
+  const handleSubmit = async () => {
     try {
       console.log(
         'organizacijaId', organizacijaId,
@@ -133,7 +136,7 @@ const AddProcedure = () => {
       if (!AreFieldsFilled()) {
         throw "Једно или више поља нису попуњена! Молимо вас попуните сва неопходна поља или притисните дугме 'Помоћ'";
       }
-  
+
       // proces
       const proceduraInput = {
         obl_id: oblastId,
@@ -151,14 +154,14 @@ const AddProcedure = () => {
         proc_zakon: zakonskiOkvir,
         proc_termin: pojmovi
       }
-  
+
       const resProcedura = await postProcedura(proceduraInput)
-  
+
       // potpis
       const dok_id = resProcedura.data.data.proc_id
-  
+
       // izradio
-      {  
+      {
         const potpis = {
           dok_id: dok_id,
           dok_tip: 2,
@@ -168,9 +171,9 @@ const AddProcedure = () => {
         }
         const resPotpis = await postPotpisi(potpis)
       }
-  
+
       // kontrolisao
-      {  
+      {
         const potpis = {
           dok_id: dok_id,
           dok_tip: 2,
@@ -180,9 +183,9 @@ const AddProcedure = () => {
         }
         const resPotpis = await postPotpisi(potpis)
       }
-  
+
       // odobrio
-      {  
+      {
         const potpis = {
           dok_id: dok_id,
           dok_tip: 2,
@@ -206,8 +209,8 @@ const AddProcedure = () => {
   const municipality = "ЈКП Медиана"
 
   const headline = {
-    fontWeight: 'bold', 
-    fontSize: 'h8.fontSize', 
+    fontWeight: 'bold',
+    fontSize: 'h8.fontSize',
     textAlign: 'center'
   };
 
@@ -220,114 +223,105 @@ const AddProcedure = () => {
   };
 
 
+  // MARK: RETURN
   return (
-    <Grid container sx={{
-      width: "100%",      
-      maxWidth: "1760px",
-      marginRight: "200px",
-      paddingTop: "50px",
-      '@media (max-width: 1920px)': {
-        maxWidth: "1400px",
-      }
-    }}>
-      <Box className="dodavanje-procedura" sx={{ 
-        ...formContainer, 
-        flexGrow: 1, 
-        gap: "20px 0",
-        "& h4": {
-          color: "#3AD1E8",
-        },
-        "& fieldset, textarea": {
-          border: "none",
-          borderBottom: "1px solid",
-          borderRadius: "0",
-          borderColor: "#3AD1E8 !important",
-          outline: "none",
-          backgroundColor: "transparent",
-          resize: "none",
-        },
-        "& label": {
-          position: "relative",
-          transform: "none",
-          marginBottom: "30px",
-          color: "#3AD1E8 !important",
-          fontSize: "18px",
-          fontWeight: "500",
-          textTransform: "uppercase",
-        },
-        "& input, textarea": {
-          padding: "10px 0 10px 0",
-          fontSize: "24px",
-          fontWeight: "300",
-          color: "#FFF",
-        },
-        "& .MuiOutlinedInput-root": {
-          padding: "0",
-        }
-        }}>
-        <Box sx={{
-          paddingBottom: "50px",
-        }}>
-          <Typography variant='h2' className='txt-blue'>
-          Додавање процедуре
-          </Typography>
-        </Box>
-        <Typography sx={{ 
-          padding: "20px 0",
-          fontSize: "18px", 
-          fontWeight: "500",
-          color: "#3AD1E8",
-          textTransform: "uppercase",
-          textAlign: "center", 
-          backgroundColor: "#000A194D",
-          '@media (max-width: 1920px)': {
-            fontSize: "16px", 
-          }
-          }}>документација о систему - процедуре</Typography>
-        <Box sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: "15px",
-          padding: "30px 0",
-          backgroundColor: "#000A194D",
-        }}>
-          <Typography variant="h3">Корисник јавних средстава: {organizacionaJedinicaName}</Typography>
-          <Typography variant="h3" sx={{
-            fontWeight: "500 !important",
-            textTransform: "uppercase",
-          }}>Процедура пословног одлучивања директора</Typography>
-        </Box>
-        <AddProcedure1
-          organizacionaJedinicaName={organizacionaJedinicaName}
-          setOrganizacionaJedinicaName={setOrganizacionaJedinicaName}
-          setOrganizacionaJedinicaId={setOrganizacionaJedinicaId}
-          setNazivProcesa={setNazivProcesa}
-          setSifraProcedure={setSifraProcedure}
-          setNazivProcedure={setNazivProcedure}
-          setVerzijaProcedure={setVerzijaProcedure}
-          setRukovodilacOrganizacioneJedinice={setRukovodilacOrganizacioneJedinice}
-          setNosilacPoslovnogProcesa={setNosilacPoslovnogProcesa}
-        />
-        <AddProcedure2
-          setCiljProcedure={setCiljProcedure}
-        />
-        <AddProcedure3
-          setPodrucjePrimene={setPodrucjePrimene}
-        />
-        <AddProcedure4
-          setDrugaDokumentacija={setDrugaDokumentacija}
-        />
-        <AddProcedure5
-          setOdgovornost={setOdgovornost}
-        />
-        <AddProcedure6
-          setZakonskiOkvir={setZakonskiOkvir}
-        />
-        <AddProcedure7
-          setPojmovi={setPojmovi}
-        />
+    <StyledContainer disabledGutters>
+      <Grid container direction="column" rowSpacing={3}>
+        {/* Header */}
+        <Grid item>
+          <ProcHeader heading="Додавање процедуре" />
+        </Grid>
+        {/* Title */}
+        <Grid item>
+          <StyledPaper sx={{
+            padding: "20px 0",
+            textAlign: "center",
+          }}>
+            <Typography variant="h3">документација о систему - процедуре</Typography>
+          </StyledPaper>
+        </Grid>
+        <Grid item>
+          <StyledPaper>
+            <Stack
+              alignItems="center"
+              py="30px"
+              spacing={2}
+            >
+              <Typography variant="h4">Корисник јавних средстава: {opstina}</Typography>
+              <Typography variant="h4" sx={{
+                fontWeight: "500",
+                textTransform: "uppercase",
+              }}>Процедура пословног одлучивања директора</Typography>
+            </Stack>
+          </StyledPaper>
+        </Grid>
+        {/* Top Grid */}
+        <Grid item>
+          <ProcInputGrid
+            procedura
+            opstina={opstina}
+            imeOblasti={location.state.imeOblasti}
+            setOrganizacijaId={setOrganizacijaId}
+            organizacionaJedinicaName={organizacionaJedinicaName}
+            setOrganizacionaJedinicaName={setOrganizacionaJedinicaName}
+            setOblastId={setOblastId}
+            setOrganizacionaJedinicaId={setOrganizacionaJedinicaId}
+            setSifraProc={setSifraProcedure}
+            setNazivProc={setNazivProcedure}
+            setVerzijaProc={setVerzijaProcedure}
+            setRukovodilacOrganizacioneJedinice={setRukovodilacOrganizacioneJedinice}
+            setNosilacPoslovnogProcesa={setNosilacPoslovnogProcesa}
+          />
+        </Grid>
+
+        <Grid item>
+          <ProcInputBox
+            id="ciljProcedure"
+            label="Сврха и циљ процедуре"
+            toSet={setCiljProcedure}
+          />
+        </Grid>
+
+        <Grid item>
+          <ProcInputBox
+            id="podrucjePrimene"
+            label="Подручје примене"
+            toSet={setPodrucjePrimene}
+          />
+        </Grid>
+
+        <Grid item>
+          <ProcInputBox
+            id="drugaDokumentacija"
+            label="Друга документација"
+            toSet={setDrugaDokumentacija}
+          />
+        </Grid>
+
+        <Grid item>
+          <ProcInputBox
+            id="odgovornost"
+            label="Одговорност и овлашћења"
+            toSet={setOdgovornost}
+          />
+        </Grid>
+
+        <Grid item>
+          <ProcInputBox
+            id="zakonskiOkvir"
+            label="Законски и подзаконски оквир"
+            toSet={setZakonskiOkvir}
+          />
+        </Grid>
+
+        <Grid item>
+          <ProcInputBox
+            id="pojmovi"
+            label="Појмови и скраћенице које се користе у дијаграму тока"
+            toSet={setPojmovi}
+          />
+        </Grid>
+
         <AddPotpis
           ptpsDatumIzradio={ptpsDatumIzradio}
           setPtpsDatumIzradio={setPtpsDatumIzradio}
@@ -352,50 +346,50 @@ const AddProcedure = () => {
           gap: "20px",
           justifyContent: "center",
           backgroundColor: "transparent !important",
-          }}>
+        }}>
           <Button variant="contained"
             onClick={() => {
               navigate("/fuk/glavna")
             }}
-          sx={{
-            width: "250px",
-            alignSelf: "center",
-            marginTop: "35px",
-            paddingY: "10px",
-            border: "1px solid #3AD1E8",
-            borderRadius: "5px",
-            backgroundColor: "transparent !important",
-            color: "#FFF",
-            lineHeight: "21px",
-            '@media (max-width: 1920px)': {
-              width: "235px",
-              fontSize: "14px", 
-              padding: "8px 35px",
-            }
-          }}>Откажи</Button>
-      
+            sx={{
+              width: "250px",
+              alignSelf: "center",
+              marginTop: "35px",
+              paddingY: "10px",
+              border: "1px solid #3AD1E8",
+              borderRadius: "5px",
+              backgroundColor: "transparent !important",
+              color: "#FFF",
+              lineHeight: "21px",
+              '@media (max-width: 1920px)': {
+                width: "235px",
+                fontSize: "14px",
+                padding: "8px 35px",
+              }
+            }}>Откажи</Button>
+
           <Button variant="contained"
             onClick={() => {
               handleSubmit();
             }}
-          sx={{
-            width: "250px",
-            alignSelf: "center",
-            marginTop: "35px !important",
-            paddingY: "10px",
-            backgroundColor: "#3AD1E8",
-            borderRadius: "5px",
-            color: "#0A1423",
-            lineHeight: "21px",
-            '@media (max-width: 1920px)': {
-              width: "235px",
-              fontSize: "14px", 
-              padding: "8px 35px",
-            }
-          }}>Потврди</Button>
+            sx={{
+              width: "250px",
+              alignSelf: "center",
+              marginTop: "35px !important",
+              paddingY: "10px",
+              backgroundColor: "#3AD1E8",
+              borderRadius: "5px",
+              color: "#0A1423",
+              lineHeight: "21px",
+              '@media (max-width: 1920px)': {
+                width: "235px",
+                fontSize: "14px",
+                padding: "8px 35px",
+              }
+            }}>Потврди</Button>
         </Stack>
-      </Box>
-    </Grid>
+      </Grid>
+    </StyledContainer>
   )
 }
 

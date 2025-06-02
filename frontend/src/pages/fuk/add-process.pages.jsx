@@ -12,20 +12,14 @@ import { postProces } from 'services/fuk-proces.services'
 import { postPotpisi } from 'services/fuk-potpis.services'
 import { postRizik } from 'services/fuk-rizik.services'
 
-import AddProcess1 from './add-process.pages-1';
-import AddProcess2 from './add-process.pages-2';
-import AddProcess3 from './add-process.pages-3';
-import AddProcess4 from './add-process.pages-4';
-import AddProcess5 from './add-process.pages-5';
-import AddProcess6 from './add-process.pages-6';
-import AddProcess7 from './add-process.pages-7';
-import AddProcess8 from './add-process.pages-8';
+
 import AddPotpis from './add-potpis';
 import { StyledContainer } from 'components/styled/StyledContainer';
 import ProcHeader from 'components/process-procedure/proc-header/proc-header.components';
 import { StyledPaper } from 'components/styled/StyledPaper';
 import ProcInputBox from 'components/process-procedure/proc-input-box/ProcInputBox.components';
 import ProcInputGrid from 'components/process-procedure/proc-input-grid/ProcInputGrid.components';
+import ProcRisk from 'components/process-procedure/proc-risk/ProcRisk.components';
 
 
 const opstina = process.env.REACT_APP_OPSTINA;
@@ -188,7 +182,7 @@ const AddProcess = () => {
   const inputSpacing = { marginBottom: 3 };
 
 
-
+  // MARK: RETURN
   return (
     <StyledContainer disableGutters>
       <Grid container direction="column" rowSpacing={3}>
@@ -222,20 +216,6 @@ const AddProcess = () => {
             </Stack>
           </StyledPaper>
         </Grid>
-        <AddProcess1
-          opstina={opstina}
-          imeOblasti={location.state.imeOblasti}
-          setOrganizacijaId={setOrganizacijaId}
-          organizacionaJedinicaName={organizacionaJedinicaName}
-          setOrganizacionaJedinicaName={setOrganizacionaJedinicaName}
-          setOblastId={setOblastId}
-          setOrganizacionaJedinicaId={setOrganizacionaJedinicaId}
-          setSifraProcesa={setSifraProcesa}
-          setNazivProcesa={setNazivProcesa}
-          setVerzijaProcesa={setVerzijaProcesa}
-          setRukovodilacOrganizacioneJedinice={setRukovodilacOrganizacioneJedinice}
-          setNosilacPoslovnogProcesa={setNosilacPoslovnogProcesa}
-        />
         {/* Top Grid */}
         <Grid item>
           <ProcInputGrid 
@@ -246,9 +226,9 @@ const AddProcess = () => {
             setOrganizacionaJedinicaName={setOrganizacionaJedinicaName}
             setOblastId={setOblastId}
             setOrganizacionaJedinicaId={setOrganizacionaJedinicaId}
-            setSifraProcesa={setSifraProcesa}
-            setNazivProcesa={setNazivProcesa}
-            setVerzijaProcesa={setVerzijaProcesa}
+            setSifraProc={setSifraProcesa}
+            setNazivProc={setNazivProcesa}
+            setVerzijaProc={setVerzijaProcesa}
             setRukovodilacOrganizacioneJedinice={setRukovodilacOrganizacioneJedinice}
             setNosilacPoslovnogProcesa={setNosilacPoslovnogProcesa}
           />
@@ -260,10 +240,12 @@ const AddProcess = () => {
             toSet={setCiljPoslovnogProcesa}
           />
         </Grid>
-        <AddProcess3
-          glavniRizici={glavniRizici}
-          setGlavniRizici={setGlavniRizici}
-        />
+        <Grid item>
+          <ProcRisk 
+            glavniRizici={glavniRizici}
+            setGlavniRizici={setGlavniRizici}
+          />
+        </Grid>
         <Grid item>
           <ProcInputBox 
             id="kratakOpisUlaza"
@@ -285,7 +267,6 @@ const AddProcess = () => {
             toSet={setResursiZaOstvarivanjePoslovnogProcesa}
           />
         </Grid>
-        <AddProcess7 />
         <AddPotpis
             ptpsDatumIzradio={ptpsDatumIzradio}
             setPtpsDatumIzradio={setPtpsDatumIzradio}
@@ -297,53 +278,32 @@ const AddProcess = () => {
             setKontrolisaoImePrezime={setKontrolisaoImePrezime}
             setOdobrioImePrezime={setOdobrioImePrezime}
         />
-        <Stack direction="row" sx={{
-          ...inputSpacing,
-          gap: "20px",
-          justifyContent: "center",
-          backgroundColor: "transparent !important",
+        <Stack 
+          direction="row" 
+          sx={{
+            gap: "20px",
+            justifyContent: "center",
           }}>
           <Button
-          id="otkazi"
-          onClick={() => {
-            navigate("/fuk/glavna")
+            variant="outline-btn"
+            id="otkazi"
+            sx={{
+              width: "250px"
             }}
-          sx={{
-            width: "250px",
-            alignSelf: "center",
-            marginTop: "35px",
-            paddingY: "10px",
-            border: "1px solid #3AD1E8",
-            borderRadius: "5px",
-            color: "#FFF",
-            lineHeight: "21px",
-            '@media (max-width: 1920px)': {
-              width: "235px",
-              fontSize: "14px", 
-              padding: "8px 35px",
-            }
-          }}>Откажи</Button>
-      
+            onClick={() => {
+              navigate("/fuk/glavna")
+            }}
+          >Откажи</Button>
           <Button
-          id="potvrdi"
-          onClick={() => {
+            variant="btn"
+            id="potvrdi"
+            sx={{
+              width: "250px"
+            }}
+            onClick={() => {
               handleSubmit();
             }}
-          sx={{
-            width: "250px",
-            alignSelf: "center",
-            marginTop: "35px !important",
-            paddingY: "10px",
-            backgroundColor: "#3AD1E8",
-            borderRadius: "5px",
-            color: "#0A1423",
-            lineHeight: "21px",
-            '@media (max-width: 1920px)': {
-              width: "235px",
-              fontSize: "14px", 
-              padding: "8px 35px",
-            }
-          }}>Потврди</Button>
+          >Потврди</Button>
         </Stack>
       </Grid>
     </StyledContainer>
